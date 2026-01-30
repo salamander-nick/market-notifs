@@ -18,9 +18,9 @@ EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 
-EMAIL_ADDRESS = "nick.stugie@gmail.com"
-EMAIL_PASSWORD = "aiyijkphkjaaxhcv"
-EMAIL_TO = "4145249750@vtext.com"
+# EMAIL_ADDRESS = "nick.stugie@gmail.com"
+# EMAIL_PASSWORD = "aiyijkphkjaaxhcv"
+# EMAIL_TO = "4145249750@vtext.com"
 
 # =====================
 # HELPERS
@@ -58,7 +58,6 @@ def send_email(subject, body):
 
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.set_debuglevel(1)
             server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
             server.send_message(msg)
         print("Email sent successfully!")
