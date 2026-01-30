@@ -17,6 +17,10 @@ EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 
+print(EMAIL_ADDRESS)
+print(EMAIL_PASSWORD)
+print(EMAIL_TO)
+
 # =====================
 # HELPERS
 # =====================
