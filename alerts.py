@@ -45,15 +45,21 @@ def save_json(path, data):
 
 
 def send_email(subject, body):
+    print("started send email function")
     msg = EmailMessage()
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = EMAIL_TO
     msg["Subject"] = subject
+    print("set the parameters")
     msg.set_content(body)
+    print("added body")
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        print("started server")
         server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        print("logged in")
         server.send_message(msg)
+        print("sent message")
 
 
 # =====================
