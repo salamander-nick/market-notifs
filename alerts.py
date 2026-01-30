@@ -54,7 +54,7 @@ def send_email(subject, body):
 
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(sender_email, app_password)
+            server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
             server.send_message(msg)
         print("Email sent successfully!")
     except Exception as e:
