@@ -5,6 +5,7 @@ import pytz
 
 import yfinance as yf
 import smtplib
+import ssl
 from email.message import EmailMessage
 
 # =====================
