@@ -2,7 +2,7 @@ name: Hourly Stock Alert Bot
 
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour, UTC
+    - cron: '30 * * * *'
   workflow_dispatch:
 
 jobs:
