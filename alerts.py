@@ -18,6 +18,7 @@ EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 
+EMAIL_ADDRESS = "nick.stugie@gmail.com"
 EMAIL_PASSWORD = "aiyijkphkjaaxhcv"
 
 # =====================
