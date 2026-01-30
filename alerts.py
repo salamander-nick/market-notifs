@@ -18,6 +18,10 @@ EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 
+print(f"EMAIL_ADDRESS loaded? {len(EMAIL_ADDRESS) > 0}")
+print(f"EMAIL_PASSWORD loaded? {len(EMAIL_PASSWORD) > 0}")
+print(f"EMAIL_TO loaded? {len(EMAIL_TO) > 0}")
+
 # EMAIL_ADDRESS = "nick.stugie@gmail.com"
 # EMAIL_PASSWORD = "aiyijkphkjaaxhcv"
 # EMAIL_TO = "4145249750@vtext.com"
