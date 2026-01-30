@@ -24,7 +24,7 @@ jobs:
       - name: Run alert bot
         env:
             EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-            EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+            EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
             EMAIL_TO: ${{ secrets.EMAIL_TO }}
 
         run: python alerts.py
