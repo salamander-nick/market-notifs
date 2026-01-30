@@ -89,6 +89,8 @@ def main():
                 ticker in alert_state and alert_state[ticker] == today
             )
 
+            print("completed already_altered")
+
             if pct_change <= THRESHOLD_PCT and not already_alerted:
                 message = (
                     f"📉 STOCK ALERT\n\n"
@@ -98,10 +100,13 @@ def main():
                     f"Potential buy opportunity 👀"
                 )
 
+                print("created message")
+
                 send_email(
                     subject=f"Stock Alert: {ticker} down {pct_change:.2f}%",
                     body=message
                 )
+                print("sent email")
                 alert_state[ticker] = today
 
         except Exception as e:
