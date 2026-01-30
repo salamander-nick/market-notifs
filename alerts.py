@@ -17,10 +17,6 @@ EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 
-print(EMAIL_ADDRESS)
-print(EMAIL_PASSWORD)
-print(EMAIL_TO)
-
 # =====================
 # HELPERS
 # =====================
@@ -49,21 +45,32 @@ def save_json(path, data):
 
 
 def send_email(subject, body):
-    print("started send email function")
     msg = EmailMessage()
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = EMAIL_TO
     msg["Subject"] = subject
-    print("set the parameters")
     msg.set_content(body)
-    print("added body")
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        print("started server")
+    context = ssl.create_default_context()
+
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.set_debuglevel(1)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
         server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        print("logged in")
+        print("Login successful!")
         server.send_message(msg)
-        print("sent message")
+        print("Message Sent!")
+
+
+    except smtplib.SMTPAuthenticationError:
+        print("Authentication error. Please check your username/app password and security settings.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        server.quit()
 
 
 # =====================
