@@ -52,26 +52,13 @@ def send_email(subject, body):
     msg["Subject"] = subject
     msg.set_content(body)
 
-    context = ssl.create_default_context()
-
     try:
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.set_debuglevel(1)
-        server.ehlo()
-        server.starttls(context=context)
-        server.ehlo()
-        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        print("Login successful!")
-        server.send_message(msg)
-        print("Message Sent!")
-
-
-    except smtplib.SMTPAuthenticationError:
-        print("Authentication error. Please check your username/app password and security settings.")
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(sender_email, app_password)
+            server.send_message(msg)
+        print("Email sent successfully!")
     except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        server.quit()
+        print(f"Error: {e}")
 
 
 # =====================
