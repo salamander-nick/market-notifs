@@ -109,11 +109,11 @@ def main():
 
             if pct_change <= THRESHOLD_PCT and not already_alerted:
                 message = (
-                    f"📉 STOCK ALERT\n\n"
+                    f"STOCK ALERT\n\n"
                     f"{ticker} is down {pct_change:.2f}% today\n"
                     f"Prev close: ${prev_close:.2f}\n"
                     f"Current: ${current_price:.2f}\n\n"
-                    f"Potential buy opportunity 👀"
+                    f"Potential buy opportunity..."
                 )
 
                 send_email(
