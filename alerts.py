@@ -4,8 +4,8 @@ from datetime import datetime
 import pytz
 
 import yfinance as yf
-from twilio.rest import Client
-
+import smtplib
+from email.message import EmailMessage
 
 # =====================
 # CONFIG
@@ -13,11 +13,9 @@ from twilio.rest import Client
 THRESHOLD_PCT = -5.0
 TIMEZONE = pytz.timezone("US/Eastern")
 
-TWILIO_SID = os.environ.get("TWILIO_SID")
-TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
-TWILIO_FROM = os.environ.get("TWILIO_FROM_NUMBER")
-TWILIO_TO = os.environ.get("TWILIO_TO_NUMBER")
-
+EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_TO = os.environ.get("EMAIL_TO")
 
 # =====================
 # HELPERS
@@ -46,13 +44,16 @@ def save_json(path, data):
         json.dump(data, f, indent=2)
 
 
-def send_sms(message):
-    client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
-    client.messages.create(
-        body=message,
-        from_=TWILIO_FROM,
-        to=TWILIO_TO
-    )
+def send_email(subject, body):
+    msg = EmailMessage()
+    msg["From"] = EMAIL_ADDRESS
+    msg["To"] = EMAIL_TO
+    msg["Subject"] = subject
+    msg.set_content(body)
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        server.send_message(msg)
 
 
 # =====================
@@ -97,7 +98,10 @@ def main():
                     f"Potential buy opportunity 👀"
                 )
 
-                send_sms(message)
+                send_email(
+                    subject=f"Stock Alert: {ticker} down {pct_change:.2f}%",
+                    body=message
+                )
                 alert_state[ticker] = today
 
         except Exception as e:
