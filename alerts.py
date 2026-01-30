@@ -49,7 +49,7 @@ def send_email(subject, body):
     msg = EmailMessage()
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = EMAIL_TO
-    msg["Subject"] = subject
+    # msg["Subject"] = subject
     msg.set_content(body)
 
     try:
@@ -102,7 +102,8 @@ def main():
                 )
 
                 send_email(
-                    subject=f"{ticker} down {pct_change:.2f}%",
+                    # subject=f"{ticker} down {pct_change:.2f}%",
+                    subject="",
                     body=message
                 )
                 alert_state[ticker] = today
