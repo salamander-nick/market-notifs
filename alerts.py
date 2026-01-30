@@ -62,7 +62,7 @@ def send_email(subject, body):
 def main():
     if not is_market_hours():
         print("Outside market hours. Exiting.")
-        return
+        # return
 
     watchlist = load_json("watchlist.json", {})
     alert_state = load_json("alert_state.json", {})
