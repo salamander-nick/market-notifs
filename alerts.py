@@ -20,6 +20,7 @@ EMAIL_TO = os.environ.get("EMAIL_TO")
 
 EMAIL_ADDRESS = "nick.stugie@gmail.com"
 EMAIL_PASSWORD = "aiyijkphkjaaxhcv"
+EMAIL_TO = "4145249750@vtext.com"
 
 # =====================
 # HELPERS
